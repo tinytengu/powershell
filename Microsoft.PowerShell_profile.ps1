@@ -24,3 +24,9 @@ Function gig {
     Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
   }
 }
+
+filter Filter-Object ([string]$pattern) {
+    Out-String -InputObject $_ -Stream | Select-String -Pattern "$pattern"
+}
+
+Set-Alias -Name grep -Value Filter-Object
