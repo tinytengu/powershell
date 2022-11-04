@@ -11,3 +11,12 @@ oh-my-posh init pwsh --config "https://raw.githubusercontent.com/tinytengu/power
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\0_custom.omp.json" | Invoke-Expression
 
 Set-Alias -Name ll -Value ls
+
+Function gig {
+  param(
+    [Parameter(Mandatory=$true)]
+    [string[]]$list
+  )
+  $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
+  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
+}
