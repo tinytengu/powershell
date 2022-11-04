@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{ .Shell }} in {{ .Folder }}",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#0CA0D8",
+          "properties": {
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#14A5AE",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true,
+            "untracked_modes": {
+              "/Users/user/Projects/oh-my-posh/": "no"
+            }
+          },
+          "style": "plain",
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }} {{ if .Working.Changed }}\uF044 {{ if gt .Working.Added 0 }}<#92ff6b>+{{ .Working.Added }} </>{{ end }}{{ if gt .Working.Modified 0 }}<#00daff>~{{ .Working.Modified }} </>{{ end }}{{ if gt .Working.Deleted 0 }}<#ff5d5d>-{{ .Working.Deleted }} </>{{ end }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}| {{ end }}{{ if .Staging.Changed }}\uF046 {{ if gt .Staging.Added 0 }}<#92ff6b>+{{ .Staging.Added }}</>{{ end }} {{ if gt .Staging.Modified 0 }}<#00daff>~{{ .Staging.Modified }}</>{{ end }} {{ if gt .Staging.Deleted 0 }}<#ff5d5d>-{{ .Staging.Deleted }}</>{{ end }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }}",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "node",
+          "style": "plain",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#6CA35E",
+          "template": "{{ .PackageManagerIcon }} \uE718 {{ .Full }} "
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#906cff",
+          "template": " \uE235 {{ .Full }} {{ if .Venv }}[{{ .Venv }}]{{ end }}"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#CD4277",
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 2
+}
